@@ -17,11 +17,14 @@ for root, _, files in os.walk(repo_dir):
             link = f"- [{file}]({rel_path})"
             doc_links.append(link)
 
+# Sort the list alphabetically
+doc_links.sort()
+
 # Generate the content to append to README
 content = "## Documents in Repository\n\n" + "\n".join(doc_links) + "\n"
 
 # Read current README content
-with open("README.md", "r") as f:
+with open("README.md", "r", encoding="utf-8") as f:
     readme_content = f.read()
 
 # Append or update the document list section
@@ -32,5 +35,5 @@ else:
     readme_content += "\n" + content
 
 # Write back to README
-with open("README.md", "w") as f:
+with open("README.md", "w", encoding="utf-8") as f:
     f.write(readme_content)
