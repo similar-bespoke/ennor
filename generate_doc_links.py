@@ -9,6 +9,10 @@ doc_extensions = (".pdf", ".txt", ".md")
 # Base content as a template
 base_content = """# Ennor Maintenance & Technical Documents Archive
 
+VESSEL NAME: ENNOR
+CALL SIGN: MRRX5
+MMSI: 232059754
+
 #ennor
 
 ## 1. Engine Bay
