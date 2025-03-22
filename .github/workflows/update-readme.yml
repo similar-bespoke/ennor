@@ -3,7 +3,7 @@ name: Update README with Document Links
 on:
   push:
     branches:
-      - main  # Adjust to your default branch
+      - main
 
 jobs:
   update-readme:
@@ -17,15 +17,15 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Run script to update README
+      - name: Run script to update resources
         run: python generate_doc_links.py
 
       - name: Commit and push changes
         run: |
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
-          git add README.md
-          git commit -m "Update README with document links" || echo "No changes to commit"
+          git add resources.html
+          git commit -m "Update resources.html with document links" || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
