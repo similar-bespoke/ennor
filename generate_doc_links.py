@@ -83,4 +83,127 @@ html_lines = [
     "<head>",
     "<meta charset='UTF-8'>",
     "<meta name='viewport' content='width=device-width, initial-scale=1.0'>",
-    "<title>Ennor
+    "<title>Ennor Maintenance & Technical Documents Archive</title>",
+    "<link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400&display=swap' rel='stylesheet'>",
+    "<style>",
+    "body {",
+    "    font-family: 'Open Sans', sans-serif;",
+    "    font-size: 0.875rem;",
+    "    line-height: 1.5;",
+    "    margin: 0 auto;",
+    "    padding: 20px;",
+    "    max-width: 800px;",
+    "    background-color: #F5F5EF;",
+    "    color: #333;",
+    "}",
+    "h1 {",
+    "    font-family: 'Montserrat', sans-serif;",
+    "    font-weight: 700;",
+    "    font-size: 1.25rem;",
+    "    margin-bottom: 1.25rem;",
+    "    color: #333;",
+    "}",
+    "h2 {",
+    "    font-family: 'Montserrat', sans-serif;",
+    "    font-weight: 700;",
+    "    font-size: 0.875rem;",
+    "    text-transform: uppercase;",
+    "    margin-top: 2.5rem;",
+    "    margin-bottom: 0.3125rem;",
+    "    color: #333;",
+    "}",
+    "h3 {",
+    "    font-family: 'Open Sans', sans-serif;",
+    "    font-weight: 400;",
+    "    font-size: 0.875rem;",
+    "    margin: 0.625rem 0 0.5rem 1.25rem;",
+    "    color: #333;",
+    "}",
+    "h4 {",
+    "    font-family: 'Open Sans', sans-serif;",
+    "    font-weight: 400;",
+    "    font-size: 0.875rem;",
+    "    margin: 0.5rem 0 0.5rem 1.875rem;",
+    "    color: #333;",
+    "}",
+    "p {",
+    "    margin: 0.625rem 0;",
+    "}",
+    "ul {",
+    "    list-style-type: disc;",
+    "    margin: 0;",
+    "    padding-left: 2.5rem;",
+    "}",
+    "li {",
+    "    margin-bottom: 0.5rem;",
+    "}",
+    "a {",
+    "    color: #0066cc;",
+    "    text-decoration: underline;",
+    "}",
+    "a:hover {",
+    "    color: #003366;",
+    "}",
+    "em {",
+    "    color: #e74c3c;",
+    "    font-style: italic;",
+    "}",
+    "@media (max-width: 600px) {",
+    "    body {",
+    "        padding: 15px;",
+    "    }",
+    "    h1 {",
+    "        font-size: 1.1rem;",
+    "    }",
+    "    h2 {",
+    "        font-size: 0.75rem;",
+    "    }",
+    "    h3, h4 {",
+    "        font-size: 0.75rem;",
+    "    }",
+    "}",
+    "</style>",
+    "</head>",
+    "<body>",
+]
+
+# Process the base content and convert to HTML
+lines = base_content.splitlines()
+current_section = None
+for line in lines:
+    line = line.rstrip()
+    if line.startswith("# "):
+        html_lines.append(f"<h1>{line[2:]}</h1>")
+    elif line.startswith("## "):
+        if current_section:  # Close previous section's ul if it exists
+            html_lines.append("</ul>")
+        current_section = line[3:]
+        html_lines.append(f"<h2>{current_section}</h2>")
+        html_lines.append("<ul>")
+    elif line.strip().startswith("#ennor"):
+        html_lines.append(f"<p>{line.strip()}</p>")
+    elif line.strip():
+        match = re.match(r"^\s*(\d+\.\d+(?:\.\d+)?)\s+(.+)$", line.strip())
+        if match:
+            number, description = match.groups()
+            indent_level = len(line) - len(line.lstrip())
+            tag = "h3" if indent_level == 4 else "h4" if indent_level == 7 else "p"
+            if number in file_map:
+                file_name, rel_path = file_map[number]
+                # Shortened link format: [number]_doc_link
+                link_text = f"{number}_doc_link"
+                html_lines.append(f"<li><{tag}>{number} {description} <a href='{rel_path}'>{link_text}</a></{tag}></li>")
+            else:
+                html_lines.append(f"<li><{tag}>{number} {description} <em>no file</em></{tag}></li>")
+        else:
+            html_lines.append(f"<p>{line}</p>")
+
+# Close the last section's ul
+if current_section:
+    html_lines.append("</ul>")
+
+html_lines.extend(["</body>", "</html>"])
+
+# Write to resources.html
+with open("resources.html", "w", encoding="utf-8") as f:
+    f.write("\n".join(html_lines) + "\n")
