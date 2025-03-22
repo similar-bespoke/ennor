@@ -6,7 +6,7 @@ repo_dir = "."
 # Define file extensions to include
 doc_extensions = (".pdf", ".txt", ".md")
 
-# Base content as a template (in Markdown-like structure, but we'll convert to HTML)
+# Base content as a template
 base_content = """# Ennor Maintenance & Technical Documents Archive
 
 #ennor
@@ -69,27 +69,95 @@ base_content = """# Ennor Maintenance & Technical Documents Archive
 file_map = {}
 for root, _, files in os.walk(repo_dir):
     for file in files:
-        if file.endswith(doc_extensions) and file != "resources.html":  # Exclude resources.html itself
+        if file.endswith(doc_extensions) and file != "resources.html":
             match = re.match(r"(\d+\.\d+)", file)
             if match:
                 number = match.group(1)
                 rel_path = os.path.relpath(os.path.join(root, file), repo_dir)
                 file_map[number] = (file, rel_path)
 
-# Process the base content and convert to HTML
+# Start building the HTML with styling
 html_lines = [
     "<!DOCTYPE html>",
     "<html lang='en'>",
     "<head>",
     "<meta charset='UTF-8'>",
+    "<meta name='viewport' content='width=device-width, initial-scale=1.0'>",
     "<title>Ennor Maintenance & Technical Documents Archive</title>",
+    "<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>",
+    "<style>",
+    "body {",
+    "    font-family: 'Roboto', sans-serif;",
+    "    line-height: 1.6;",
+    "    margin: 0 auto;",
+    "    padding: 20px;",
+    "    max-width: 800px;",
+    "    background-color: #f9f9f9;",
+    "    color: #333;",
+    "}",
+    "h1 {",
+    "    font-size: 2.5rem;",
+    "    margin-bottom: 1.5rem;",
+    "    color: #2c3e50;",
+    "}",
+    "h2 {",
+    "    font-size: 1.8rem;",
+    "    margin-top: 2rem;",
+    "    margin-bottom: 1rem;",
+    "    color: #34495e;",
+    "    border-bottom: 1px solid #ddd;",
+    "    padding-bottom: 0.5rem;",
+    "}",
+    "h3 {",
+    "    font-size: 1.3rem;",
+    "    margin: 0.8rem 0 0.5rem;",
+    "    color: #555;",
+    "}",
+    "h4 {",
+    "    font-size: 1.1rem;",
+    "    margin: 0.5rem 0;",
+    "    color: #666;",
+    "}",
+    "p {",
+    "    margin: 0.5rem 0;",
+    "}",
+    "a {",
+    "    color: #2980b9;",
+    "    text-decoration: none;",
+    "}",
+    "a:hover {",
+    "    text-decoration: underline;",
+    "}",
+    "em {",
+    "    color: #e74c3c;",
+    "    font-style: italic;",
+    "}",
+    "@media (max-width: 600px) {",
+    "    body {",
+    "        padding: 15px;",
+    "    }",
+    "    h1 {",
+    "        font-size: 1.8rem;",
+    "    }",
+    "    h2 {",
+    "        font-size: 1.5rem;",
+    "    }",
+    "    h3 {",
+    "        font-size: 1.2rem;",
+    "    }",
+    "    h4 {",
+    "        font-size: 1rem;",
+    "    }",
+    "}",
+    "</style>",
     "</head>",
     "<body>",
 ]
 
+# Process the base content and convert to HTML
 lines = base_content.splitlines()
 for line in lines:
-    line = line.rstrip()  # Remove trailing whitespace
+    line = line.rstrip()
     if line.startswith("# "):
         html_lines.append(f"<h1>{line[2:]}</h1>")
     elif line.startswith("## "):
@@ -100,7 +168,7 @@ for line in lines:
         match = re.match(r"^\s*(\d+\.\d+(?:\.\d+)?)\s+(.+)$", line.strip())
         if match:
             number, description = match.groups()
-            indent_level = len(line) - len(line.lstrip())  # Count leading spaces
+            indent_level = len(line) - len(line.lstrip())
             tag = "h3" if indent_level == 4 else "h4" if indent_level == 7 else "p"
             if number in file_map:
                 file_name, rel_path = file_map[number]
