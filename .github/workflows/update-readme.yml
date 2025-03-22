@@ -1,0 +1,31 @@
+name: Update README with Document Links
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your default branch
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run script to update README
+        run: python generate_doc_links.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add README.md
+          git commit -m "Update README with document links" || echo "No changes to commit"
+          git push
+        env:
+
