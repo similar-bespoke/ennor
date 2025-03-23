@@ -61,9 +61,10 @@ MMSI: 232059754
 
 ## 7. Cockpit
     7.1 Scanstrut Atmos Inflator
-    7.2 Life raft
-    7.3 Tender
-    7.4 Torqueedo
+    7.2 Seago 4-Person Life raft
+    7.3 EZRaft 3.1m Tender
+    7.4 Torqueedo 1003
+    7.5 Fenders - Fendertex
 
 ## 8. Sundries
     8.1 Pre-delivery inspection checklist
