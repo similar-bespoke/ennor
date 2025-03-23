@@ -1,9 +1,10 @@
+import markdown
 import os
 import re
-import markdown
 
 # Define the repository directory (root of the repo)
 repo_dir = "."
+
 # Define file extensions to include
 doc_extensions = (".pdf", ".txt", ".md")
 
@@ -22,11 +23,8 @@ for root, _, files in os.walk(repo_dir):
                 rel_path = os.path.relpath(os.path.join(root, file), repo_dir)
                 file_map[number] = (file, rel_path)
 
-# Initialize Markdown converter with list handling
-md = markdown.Markdown(extensions=['extra'])  # 'extra' for better list support
-
-# Convert the entire Markdown content to HTML first
-initial_html = md.convert(base_content)
+# Initialize Markdown converter for inline text
+md = markdown.Markdown(extensions=['extra'])
 
 # Start building the HTML with styling
 html_lines = [
@@ -64,27 +62,14 @@ html_lines = [
     "    margin-bottom: 0.3125rem;",
     "    color: #333;",
     "}",
-    "h3 {",
-    "    font-family: 'Open Sans', sans-serif;",
-    "    font-weight: 400;",
-    "    font-size: 1rem;",
-    "    margin: 0.625rem 0 0.5rem 1.25rem;",
-    "    color: #333;",
-    "}",
-    "h4 {",
-    "    font-family: 'Open Sans', sans-serif;",
-    "    font-weight: 400;",
-    "    font-size: 1rem;",
-    "    margin: 0.5rem 0 0.5rem 1.875rem;",
-    "    color: #333;",
-    "}",
-    "p {",
-    "    margin: 0.625rem 0;",
-    "}",
     "ul {",
     "    list-style-type: disc;",
     "    margin: 0;",
-    "    padding-left: 2.5rem;",
+    "    padding-left: 2rem;",
+    "}",
+    "ul ul {",
+    "    list-style-type: circle;",
+    "    padding-left: 2rem;",
     "}",
     "li {",
     "    margin-bottom: 0.5rem;",
@@ -110,54 +95,75 @@ html_lines = [
     "    h2 {",
     "        font-size: 0.875rem;",
     "    }",
-    "    h3, h4 {",
-    "        font-size: 0.875rem;",
-    "    }",
     "}",
     "</style>",
     "</head>",
     "<body>",
 ]
 
-# Process the initial HTML to add custom file links and adjust structure
+# Process the base content
 lines = base_content.splitlines()
-current_section = None
+current_indent = 0
+list_stack = []  # Track open <ul> tags
+
 for line in lines:
     line = line.rstrip()
+    if not line:
+        continue
+
+    # Calculate indentation level (2 spaces = 1 level)
+    indent = len(line) - len(line.lstrip())
+    indent_level = indent // 2
+
+    # Close any excess list levels
+    while len(list_stack) > indent_level:
+        html_lines.append("</ul>")
+        list_stack.pop()
+
+    # Open new list levels if needed
+    while len(list_stack) < indent_level:
+        html_lines.append("<ul>")
+        list_stack.append(True)
+
+    # Process the line content
     if line.startswith("# "):
+        if list_stack:  # Close any open lists before h1
+            html_lines.extend(["</ul>"] * len(list_stack))
+            list_stack.clear()
         html_lines.append(f"<h1>{md.convert(line[2:])}</h1>")
     elif line.startswith("## "):
-        if current_section:
-            html_lines.append("</ul>")
-        current_section = line[3:]
-        html_lines.append(f"<h2>{md.convert(current_section)}</h2>")
-        html_lines.append("<ul>")
-    elif line.strip().startswith("#ennor"):
-        html_lines.append(f"<p>{md.convert(line.strip())}</p>")
-    elif line.strip():
-        match = re.match(r"^\s*(\d+(?:\.\d+)*)\s+(.+)$", line.strip())
-        if match:
-            number, description = match.groups()
-            indent_level = len(line) - len(line.lstrip())
-            tag = "h3" if indent_level == 4 else "h4" if indent_level == 7 else "p"
-            description_html = md.convert(description)
+        if list_stack:  # Close any open lists before h2
+            html_lines.extend(["</ul>"] * len(list_stack))
+            list_stack.clear()
+        html_lines.append(f"<h2>{md.convert(line[3:])}</h2>")
+    elif line.strip().startswith("- "):
+        content = line.strip()[2:]  # Remove "- "
+        # Extract number (e.g., "1.1", "1.1.1") if present
+        number_match = re.match(r"(\d+(?:\.\d+)*)\s+(.+)", content)
+        if number_match:
+            number, description = number_match.groups()
+            content_html = md.convert(description).replace('<p>', '').replace('</p>', '')
+            # Check if this is a second-to-top level (e.g., "1.1", not "1" or "1.1.1")
             if number.count('.') == 1 and number in file_map:
                 file_name, rel_path = file_map[number]
                 link_text = f"{number}_doc_link"
-                html_lines.append(f"<li><{tag}>{number} {description_html} <a href='{rel_path}'>{link_text}</a></{tag}></li>")
+                html_lines.append(f"<li>{number} {content_html} <a href='{rel_path}'>{link_text}</a></li>")
             else:
-                html_lines.append(f"<li><{tag}>{number} {description_html}</{tag}></li>")
+                html_lines.append(f"<li>{number} {content_html}</li>")
         else:
-            # Handle non-numbered list items (e.g., WOBBLES)
-            if line.strip().startswith("- "):
-                html_lines.append(f"<li>{md.convert(line.strip()[2:])}</li>")
-            else:
-                html_lines.append(f"<p>{md.convert(line.strip())}</p>")
+            content_html = md.convert(content).replace('<p>', '').replace('</p>', '')
+            html_lines.append(f"<li>{content_html}</li>")
+    else:
+        if list_stack:  # Close lists if transitioning to paragraph
+            html_lines.extend(["</ul>"] * len(list_stack))
+            list_stack.clear()
+        html_lines.append(f"<p>{md.convert(line.strip())}</p>")
+
     md.reset()
 
-# Close the last section's ul
-if current_section:
-    html_lines.append("</ul>")
+# Close any remaining lists
+if list_stack:
+    html_lines.extend(["</ul>"] * len(list_stack))
 
 html_lines.extend(["</body>", "</html>"])
 
