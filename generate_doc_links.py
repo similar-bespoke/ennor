@@ -33,7 +33,7 @@ html_lines = [
     "<style>",
     "body {",
     "    font-family: 'Open Sans', sans-serif;",
-    "    font-size: 1rem;",          # Increased from 0.875rem (14px) to 1rem (16px)
+    "    font-size: 1rem;",
     "    line-height: 1.5;",
     "    margin: 0 auto;",
     "    padding: 20px;",
@@ -44,14 +44,14 @@ html_lines = [
     "h1 {",
     "    font-family: 'Montserrat', sans-serif;",
     "    font-weight: 700;",
-    "    font-size: 1.375rem;",      # Increased from 1.25rem (20px) to 1.375rem (22px)
+    "    font-size: 1.375rem;",
     "    margin-bottom: 1.25rem;",
     "    color: #333;",
     "}",
     "h2 {",
     "    font-family: 'Montserrat', sans-serif;",
     "    font-weight: 700;",
-    "    font-size: 1rem;",          # Increased from 0.875rem (14px) to 1rem (16px)
+    "    font-size: 1rem;",
     "    text-transform: uppercase;",
     "    margin-top: 2.5rem;",
     "    margin-bottom: 0.3125rem;",
@@ -60,14 +60,14 @@ html_lines = [
     "h3 {",
     "    font-family: 'Open Sans', sans-serif;",
     "    font-weight: 400;",
-    "    font-size: 1rem;",          # Increased from 0.875rem (14px) to 1rem (16px)
+    "    font-size: 1rem;",
     "    margin: 0.625rem 0 0.5rem 1.25rem;",
     "    color: #333;",
     "}",
     "h4 {",
     "    font-family: 'Open Sans', sans-serif;",
     "    font-weight: 400;",
-    "    font-size: 1rem;",          # Increased from 0.875rem (14px) to 1rem (16px)
+    "    font-size: 1rem;",
     "    margin: 0.5rem 0 0.5rem 1.875rem;",
     "    color: #333;",
     "}",
@@ -98,13 +98,13 @@ html_lines = [
     "        padding: 15px;",
     "    }",
     "    h1 {",
-    "        font-size: 1.25rem;",   # Increased from 1.1rem (17.6px) to 1.25rem (20px)
+    "        font-size: 1.25rem;",
     "    }",
     "    h2 {",
-    "        font-size: 0.875rem;",  # Increased from 0.75rem (12px) to 0.875rem (14px)
+    "        font-size: 0.875rem;",
     "    }",
     "    h3, h4 {",
-    "        font-size: 0.875rem;",  # Increased from 0.75rem (12px) to 0.875rem (14px)
+    "        font-size: 0.875rem;",
     "    }",
     "}",
     "</style>",
@@ -128,18 +128,18 @@ for line in lines:
     elif line.strip().startswith("#ennor"):
         html_lines.append(f"<p>{line.strip()}</p>")
     elif line.strip():
-        match = re.match(r"^\s*(\d+\.\d+(?:\.\d+)?)\s+(.+)$", line.strip())
+        match = re.match(r"^\s*(\d+(?:\.\d+)*)\s+(.+)$", line.strip())
         if match:
             number, description = match.groups()
             indent_level = len(line) - len(line.lstrip())
             tag = "h3" if indent_level == 4 else "h4" if indent_level == 7 else "p"
-            if number in file_map:
+            # Only link files for second-to-top level (e.g., 1.1, 2.3) - exactly one decimal
+            if number.count('.') == 1 and number in file_map:
                 file_name, rel_path = file_map[number]
-                # Shortened link format: [number]_doc_link
                 link_text = f"{number}_doc_link"
                 html_lines.append(f"<li><{tag}>{number} {description} <a href='{rel_path}'>{link_text}</a></{tag}></li>")
             else:
-                html_lines.append(f"<li><{tag}>{number} {description} <em>no file</em></{tag}></li>")
+                html_lines.append(f"<li><{tag}>{number} {description}</{tag}></li>")
         else:
             html_lines.append(f"<p>{line}</p>")
 

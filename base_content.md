@@ -1,18 +1,18 @@
-base_content = """# Ennor Maintenance & Technical Documents Archive
+# Ennor Maintenance & Technical Documents Archive
 
-VESSEL NAME: ENNOR
-CALL SIGN: MRRX5
-MMSI: 232059754
+**VESSEL NAME: ENNOR**
+**CALL SIGN: MRRX5**
+**MMSI: 232059754**
 
 ## Primary Checks (WOBBLES)
-    Water
-    Oil
-    Batteries
-    Belts
-    Leaks
-    Exhaust
-    Sound
-    (Spares)
+    - Water
+    - Oil
+    - Batteries
+    - Belts
+    - Leaks
+    - Exhaust
+    - Sound
+    - (Spares)
 
 ## 1. Engine Bay
     1.1 Yanmar 8LV370 - 
@@ -78,8 +78,6 @@ MMSI: 232059754
 
 ## 9. Navigation Resources
     9.1 Ennor Destination Database
-       9.1.1 Cornwall https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/mjf9mqx0ldghxh2
-       9.1.2 Scillies https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/mv9865g8esd64w0/vwtkf4c7dgc06vlj
-       9.1.3 Rock Lighthouses https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/m6m1l922l8wj4r4
-
-"""
+       9.1.1 [Cornwall] (https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/mjf9mqx0ldghxh2)
+       9.1.2 [Scillies] (https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/mv9865g8esd64w0/vwtkf4c7dgc06vlj)
+       9.1.3 [Rock Lighthouses] (https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/m6m1l922l8wj4r4)
