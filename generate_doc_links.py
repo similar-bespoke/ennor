@@ -6,69 +6,9 @@ repo_dir = "."
 # Define file extensions to include
 doc_extensions = (".pdf", ".txt", ".md")
 
-# Base content as a template
-base_content = """# Ennor Maintenance & Technical Documents Archive
-
-VESSEL NAME: ENNOR
-CALL SIGN: MRRX5
-MMSI: 232059754
-
-#ennor
-
-## 1. Engine Bay
-    1.1 Yanmar 8LV370 - 
-       1.1.1 Oil Filter Spec
-       1.1.2 Fuel Filter Spec
-    1.2 Calorifier - 
-    1.3 Main Water Pump - 
-    1.4 Webasto Heater - 
-
-## 2. Energy Management
-    2.1 Mastervolt MV 12/6000
-    2.2 Generator - Fischer Panda 8000iPMS 6.4kW
-    2.3 CZone
-    2.4 Solar Panels - 2 x Solara S280M43 + 3 x Solara S705M43
-    2.5 Shore Power system (breakers etc)
-
-## 3. Thrusters
-    3.1 Sleipnir SE100 - 
-
-## 4. Helm
-    4.1 Simrad NSS evo3S - 
-    4.2 Simrad Autopilot - 
-    4.3 Lenco Pro Trim Tabs - 
-    4.4 Simrad VHF - 
-    4.5 Sentinel Monitoring - 
-    4.6 Lewmar Anchor chain counter
-    4.7 SeaFire unit
-
-## 5. Topside
-    5.1 Simrad Radar - Halo20+ - 
-    5.2 Marinco S/S 5” Spotlight - 
-    5.3 Lumishore Floodlight - 
-    5.4 Ominsense Ulysses MicroS+ thermal camera -
-    5.5 Echomax AX Active Radar Reflector -
-    5.6 Calypso Instruments ULP Wind Sensor - 
-    5.7 Starlink Marine - 
-    5.8 Iris 735 cameras
-    5.9 IP Camera Encorder - Clinton Electronics E04HDA
-
-## 6. Galley
-    6.1 Oven
-    6.2 Hob
-    6.3 Fridge
-    6.4 Fridge/Freezer
-
-## 7. Cockpit
-    7.1 Scanstrut Atmos Inflator
-    7.2 Seago 4-Person Life raft
-    7.3 EZRaft 3.1m Tender
-    7.4 Torqueedo 1003
-    7.5 Fenders - Fendertex
-
-## 8. Sundries
-    8.1 Pre-delivery inspection checklist
-"""
+# Read base content from external file
+with open("base_content.md", "r", encoding="utf-8") as f:
+    base_content = f.read()
 
 # Collect all files in the repo
 file_map = {}
@@ -93,7 +33,7 @@ html_lines = [
     "<style>",
     "body {",
     "    font-family: 'Open Sans', sans-serif;",
-    "    font-size: 0.875rem;",
+    "    font-size: 1rem;",          # Increased from 0.875rem (14px) to 1rem (16px)
     "    line-height: 1.5;",
     "    margin: 0 auto;",
     "    padding: 20px;",
@@ -104,14 +44,14 @@ html_lines = [
     "h1 {",
     "    font-family: 'Montserrat', sans-serif;",
     "    font-weight: 700;",
-    "    font-size: 1.25rem;",
+    "    font-size: 1.375rem;",      # Increased from 1.25rem (20px) to 1.375rem (22px)
     "    margin-bottom: 1.25rem;",
     "    color: #333;",
     "}",
     "h2 {",
     "    font-family: 'Montserrat', sans-serif;",
     "    font-weight: 700;",
-    "    font-size: 0.875rem;",
+    "    font-size: 1rem;",          # Increased from 0.875rem (14px) to 1rem (16px)
     "    text-transform: uppercase;",
     "    margin-top: 2.5rem;",
     "    margin-bottom: 0.3125rem;",
@@ -120,14 +60,14 @@ html_lines = [
     "h3 {",
     "    font-family: 'Open Sans', sans-serif;",
     "    font-weight: 400;",
-    "    font-size: 0.875rem;",
+    "    font-size: 1rem;",          # Increased from 0.875rem (14px) to 1rem (16px)
     "    margin: 0.625rem 0 0.5rem 1.25rem;",
     "    color: #333;",
     "}",
     "h4 {",
     "    font-family: 'Open Sans', sans-serif;",
     "    font-weight: 400;",
-    "    font-size: 0.875rem;",
+    "    font-size: 1rem;",          # Increased from 0.875rem (14px) to 1rem (16px)
     "    margin: 0.5rem 0 0.5rem 1.875rem;",
     "    color: #333;",
     "}",
@@ -158,13 +98,13 @@ html_lines = [
     "        padding: 15px;",
     "    }",
     "    h1 {",
-    "        font-size: 1.1rem;",
+    "        font-size: 1.25rem;",   # Increased from 1.1rem (17.6px) to 1.25rem (20px)
     "    }",
     "    h2 {",
-    "        font-size: 0.75rem;",
+    "        font-size: 0.875rem;",  # Increased from 0.75rem (12px) to 0.875rem (14px)
     "    }",
     "    h3, h4 {",
-    "        font-size: 0.75rem;",
+    "        font-size: 0.875rem;",  # Increased from 0.75rem (12px) to 0.875rem (14px)
     "    }",
     "}",
     "</style>",
