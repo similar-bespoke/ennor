@@ -8,7 +8,7 @@
 <style>
 body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 1.5;
     margin: 0 auto;
     padding: 20px;
@@ -19,14 +19,14 @@ body {
 h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1.375rem;
     margin-bottom: 1.25rem;
     color: #333;
 }
 h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 0.875rem;
+    font-size: 1rem;
     text-transform: uppercase;
     margin-top: 2.5rem;
     margin-bottom: 0.3125rem;
@@ -35,14 +35,14 @@ h2 {
 h3 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 0.875rem;
+    font-size: 1rem;
     margin: 0.625rem 0 0.5rem 1.25rem;
     color: #333;
 }
 h4 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 0.875rem;
+    font-size: 1rem;
     margin: 0.5rem 0 0.5rem 1.875rem;
     color: #333;
 }
@@ -73,28 +73,44 @@ em {
         padding: 15px;
     }
     h1 {
-        font-size: 1.1rem;
+        font-size: 1.25rem;
     }
     h2 {
-        font-size: 0.75rem;
+        font-size: 0.875rem;
     }
     h3, h4 {
-        font-size: 0.75rem;
+        font-size: 0.875rem;
     }
 }
 </style>
 </head>
 <body>
-<h1>Ennor Maintenance & Technical Documents Archive</h1>
+<p>base_content = """# Ennor Maintenance & Technical Documents Archive</p>
 <p>VESSEL NAME: ENNOR</p>
 <p>CALL SIGN: MRRX5</p>
 <p>MMSI: 232059754</p>
-<p>#ennor</p>
+<h2>Primary Checks (WOBBLES)</h2>
+<ul>
+<p>    Water</p>
+<p>    Oil</p>
+<p>    Batteries</p>
+<p>    Belts</p>
+<p>    Leaks</p>
+<p>    Exhaust</p>
+<p>    Sound</p>
+<p>    (Spares)</p>
+</ul>
 <h2>1. Engine Bay</h2>
 <ul>
 <li><h3>1.1 Yanmar 8LV370 - <a href='1.1 Yanmar 8LV_OPM_0A8LV-G00101.pdf'>1.1_doc_link</a></h3></li>
-<li><h4>1.1.1 Oil Filter Spec <em>no file</em></h4></li>
-<li><h4>1.1.2 Fuel Filter Spec <em>no file</em></h4></li>
+<li><h4>1.1.1 XN199611 Air Filter Element <em>no file</em></h4></li>
+<li><h4>1.1.2 120324-55760 Water Separator Element <em>no file</em></h4></li>
+<li><h4>1.1.3 119798-35110E Oil Filter Element <em>no file</em></h4></li>
+<li><h4>1.1.4 119798-55110 Fuel Filter Element <em>no file</em></h4></li>
+<li><h4>1.1.5 119593-42202 Impeller <em>no file</em></h4></li>
+<li><h4>1.1.6 24321-000700 Impeller O-Ring <em>no file</em></h4></li>
+<li><h4>1.1.7 119798-77350 Belt V-Ribbed <em>no file</em></h4></li>
+<li><h4>1.1.8 119574-18790 Zinc Anti-Corrosive <em>no file</em></h4></li>
 <li><h3>1.2 Calorifier - <em>no file</em></h3></li>
 <li><h3>1.3 Main Water Pump - <em>no file</em></h3></li>
 <li><h3>1.4 Webasto Heater - <em>no file</em></h3></li>
@@ -130,27 +146,37 @@ em {
 <li><h3>5.5 Echomax AX Active Radar Reflector - <a href='5.5 Active XS quick start guide.pdf'>5.5_doc_link</a></h3></li>
 <li><h3>5.6 Calypso Instruments ULP Wind Sensor - <a href='5.6 Calypso ULP Wind Sensor NMEA2000 User Manual Eng. V.1.pdf'>5.6_doc_link</a></h3></li>
 <li><h3>5.7 Starlink Marine - <a href='5.7 Starlink Gen3 Router and Marine High Perf Kit.pdf'>5.7_doc_link</a></h3></li>
-<li><h3>5.8 Iris 735 cameras <a href='5.8 IRIS735 Camera -Data-Sheet-230323.pdf'>5.8_doc_link</a></h3></li>
-<li><h3>5.9 IP Camera Encorder - Clinton Electronics E04HDA <a href='5.9 Clinton Electroncis E04HDA_05.02.22.pdf'>5.9_doc_link</a></h3></li>
+<li><h3>5.8 Iris 735 cameras - <a href='5.8 IRIS735 Camera -Data-Sheet-230323.pdf'>5.8_doc_link</a></h3></li>
+<li><h3>5.9 IP Camera Encoder - Clinton Electronics E04HDA <a href='5.9 Clinton Electroncis E04HDA_05.02.22.pdf'>5.9_doc_link</a></h3></li>
 </ul>
 <h2>6. Galley</h2>
 <ul>
-<li><h3>6.1 Oven <em>no file</em></h3></li>
-<li><h3>6.2 Hob <em>no file</em></h3></li>
-<li><h3>6.3 Fridge <em>no file</em></h3></li>
-<li><h3>6.4 Fridge/Freezer <em>no file</em></h3></li>
+<li><h3>6.1 Oven - <em>no file</em></h3></li>
+<li><h3>6.2 Hob - <em>no file</em></h3></li>
+<li><h3>6.3 Fridge - <em>no file</em></h3></li>
+<li><h3>6.4 Fridge/Freezer - <em>no file</em></h3></li>
 </ul>
 <h2>7. Cockpit</h2>
 <ul>
 <li><h3>7.1 Scanstrut Atmos Inflator <a href='7.1 Scanstrut-Atmos-Manual.pdf'>7.1_doc_link</a></h3></li>
 <li><h3>7.2 Seago 4-Person Life raft <a href='7.2 Seago-Liferaft-Manual.pdf'>7.2_doc_link</a></h3></li>
 <li><h3>7.3 EZRaft 3.1m Tender <a href='7.3 EZraft Manual 310.pdf'>7.3_doc_link</a></h3></li>
+<li><h4>7.3.1 Inflate to 2.8psi <em>no file</em></h4></li>
 <li><h3>7.4 Torqueedo 1003 <a href='7.4 Torqueedo-1003-manual.pdf'>7.4_doc_link</a></h3></li>
 <li><h3>7.5 Fenders - Fendertex <a href='7.5 Fendertex-C73-5psi-manual.pdf'>7.5_doc_link</a></h3></li>
+<li><h4>7.5.1 Inflate to 5.1psi <em>no file</em></h4></li>
 </ul>
 <h2>8. Sundries</h2>
 <ul>
 <li><h3>8.1 Pre-delivery inspection checklist <a href='8.1 Pre Delivery Inspection  .pdf'>8.1_doc_link</a></h3></li>
+</ul>
+<h2>9. Navigation Resources</h2>
+<ul>
+<li><h3>9.1 Ennor Destination Database <em>no file</em></h3></li>
+<li><h4>9.1.1 Cornwall https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/mjf9mqx0ldghxh2 <em>no file</em></h4></li>
+<li><h4>9.1.2 Scillies https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/mv9865g8esd64w0/vwtkf4c7dgc06vlj <em>no file</em></h4></li>
+<li><h4>9.1.3 Rock Lighthouses https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/m6m1l922l8wj4r4 <em>no file</em></h4></li>
+<p>"""</p>
 </ul>
 </body>
 </html>
