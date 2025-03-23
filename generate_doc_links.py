@@ -112,6 +112,11 @@ html_lines = [
     "<body>",
 ]
 
+# Function to convert Markdown links to HTML
+def convert_markdown_links(text):
+    # Match [text](url) pattern and replace with HTML <a> tag
+    return re.sub(r'\[(.*?)\]\((.*?)\)', r'<a href="\2">\1</a>', text)
+
 # Process the base content and convert to HTML
 lines = base_content.splitlines()
 current_section = None
@@ -133,7 +138,9 @@ for line in lines:
             number, description = match.groups()
             indent_level = len(line) - len(line.lstrip())
             tag = "h3" if indent_level == 4 else "h4" if indent_level == 7 else "p"
-            # Only link files for second-to-top level (e.g., 1.1, 2.3) - exactly one decimal
+            # Convert any Markdown links in the description
+            description = convert_markdown_links(description)
+            # Only link files for second-to-top level (e.g., 9.1) if file exists
             if number.count('.') == 1 and number in file_map:
                 file_name, rel_path = file_map[number]
                 link_text = f"{number}_doc_link"
@@ -141,7 +148,9 @@ for line in lines:
             else:
                 html_lines.append(f"<li><{tag}>{number} {description}</{tag}></li>")
         else:
-            html_lines.append(f"<p>{line}</p>")
+            # Convert Markdown links in non-numbered lines too
+            line_converted = convert_markdown_links(line.strip())
+            html_lines.append(f"<p>{line_converted}</p>")
 
 # Close the last section's ul
 if current_section:
