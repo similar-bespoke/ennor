@@ -22,6 +22,12 @@ for root, _, files in os.walk(repo_dir):
                 rel_path = os.path.relpath(os.path.join(root, file), repo_dir)
                 file_map[number] = (file, rel_path)
 
+# Initialize Markdown converter with list handling
+md = markdown.Markdown(extensions=['extra'])  # 'extra' for better list support
+
+# Convert the entire Markdown content to HTML first
+initial_html = md.convert(base_content)
+
 # Start building the HTML with styling
 html_lines = [
     "<!DOCTYPE html>",
@@ -113,10 +119,7 @@ html_lines = [
     "<body>",
 ]
 
-# Initialize Markdown converter
-md = markdown.Markdown()
-
-# Process the base content and convert to HTML
+# Process the initial HTML to add custom file links and adjust structure
 lines = base_content.splitlines()
 current_section = None
 for line in lines:
@@ -124,7 +127,7 @@ for line in lines:
     if line.startswith("# "):
         html_lines.append(f"<h1>{md.convert(line[2:])}</h1>")
     elif line.startswith("## "):
-        if current_section:  # Close previous section's ul if it exists
+        if current_section:
             html_lines.append("</ul>")
         current_section = line[3:]
         html_lines.append(f"<h2>{md.convert(current_section)}</h2>")
@@ -137,9 +140,7 @@ for line in lines:
             number, description = match.groups()
             indent_level = len(line) - len(line.lstrip())
             tag = "h3" if indent_level == 4 else "h4" if indent_level == 7 else "p"
-            # Convert Markdown in the description
             description_html = md.convert(description)
-            # Only link files for second-to-top level (e.g., 9.1) if file exists
             if number.count('.') == 1 and number in file_map:
                 file_name, rel_path = file_map[number]
                 link_text = f"{number}_doc_link"
@@ -147,8 +148,11 @@ for line in lines:
             else:
                 html_lines.append(f"<li><{tag}>{number} {description_html}</{tag}></li>")
         else:
-            html_lines.append(f"<p>{md.convert(line.strip())}</p>")
-    # Reset Markdown parser state between lines to avoid carryover
+            # Handle non-numbered list items (e.g., WOBBLES)
+            if line.strip().startswith("- "):
+                html_lines.append(f"<li>{md.convert(line.strip()[2:])}</li>")
+            else:
+                html_lines.append(f"<p>{md.convert(line.strip())}</p>")
     md.reset()
 
 # Close the last section's ul
