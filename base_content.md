@@ -36,7 +36,7 @@
 - 2.5 Shore Power system (breakers etc)
 
 ## 3. Thrusters
-- 3.1 Sleipnir SE100 -
+- 3.1 Sleipner SE100 -
 
 ## 4. Helm
 - 4.1 Simrad NSS evo3S -
