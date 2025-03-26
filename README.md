@@ -1,6 +1,3 @@
-# ennor
+# Welcome onboard Ennor
 
-Technical Resources
-
-A compendium of maintenance and technical resources for the management of Ennor.
-
+[Technical Resources](./docs/resources.html)
