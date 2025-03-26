@@ -1,3 +1,3 @@
 # Welcome onboard Ennor
 
-[Technical Resources](./docs/resources.html)
+[Technical Resources](./resources.html)
