@@ -76,8 +76,3 @@
 ## 8. Sundries
 - 8.1 Pre-delivery inspection checklist
 
-## 9. Navigation Resources
-- 9.1 Ennor Destination Database
-  - 9.1.1 [Cornwall](https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/mjf9mqx0ldghxh2)
-  - 9.1.2 [Scillies](https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/mv9865g8esd64w0/vwtkf4c7dgc06vlj)
-  - 9.1.3 [Rock Lighthouses](https://app.nocodb.com/#/wgcjgmf8/p68tup41pjhtaa3/m6m1l922l8wj4r4)
