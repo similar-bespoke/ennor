@@ -16,14 +16,14 @@
 
 ## 1. Engine Bay
 - 1.1 Yanmar 8LV370 -
-  - 1.1.1 XN199611 Air Filter Element
-  - 1.1.2 120324-55760 Water Separator Element
-  - 1.1.3 119798-35110E Oil Filter Element
-  - 1.1.4 119798-55110 Fuel Filter Element
-  - 1.1.5 119593-42202 Impeller
-  - 1.1.6 24321-000700 Impeller O-Ring
-  - 1.1.7 119798-77350 Belt V-Ribbed
-  - 1.1.8 119574-18790 Zinc Anti-Corrosive
+  - 1.1.1 _XN199611 Air Filter Element_
+  - 1.1.2 _120324-55760 Water Separator Element_
+  - 1.1.3 _119798-35110E Oil Filter Element_
+  - 1.1.4 _119798-55110 Fuel Filter Element_
+  - 1.1.5 _119593-42202 Impeller_
+  - 1.1.6 _24321-000700 Impeller O-Ring_
+  - 1.1.7 _119798-77350 Belt V-Ribbed_
+  - 1.1.8 _119574-18790 Zinc Anti-Corrosive_
 - 1.2 Calorifier -
 - 1.3 Main Water Pump -
 - 1.4 Webasto Heater -
@@ -68,10 +68,10 @@
 - 7.1 Scanstrut Atmos Inflator
 - 7.2 Seago 4-Person Life raft
 - 7.3 EZRaft 3.1m Tender
-  - 7.3.1 Inflate to 2.8psi
+  - 7.3.1 _Inflate to 2.8psi_
 - 7.4 Torqueedo 1003
 - 7.5 Fenders - Fendertex
-  - 7.5.1 Inflate to 5.1psi
+  - 7.5.1 _Inflate to 5.1psi_
 
 ## 8. Sundries
 - 8.1 Pre-delivery inspection checklist
