@@ -4,16 +4,6 @@
 **CALL SIGN: MRRX5**  
 **MMSI: 232059754**
 
-## Primary Checks (WOBBLES)
-- Water
-- Oil
-- Batteries
-- Belts
-- Leaks
-- Exhaust
-- Sound
-- (Spares)
-
 ## 1. Engine Bay
 - 1.1 Yanmar 8LV370 -
   - 1.1.1 _XN199611 Air Filter Element_

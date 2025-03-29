@@ -108,6 +108,7 @@ html_lines[4] = html_lines[4].format(title="Ennor Maintenance & Technical Docume
 lines = base_content.splitlines()
 current_indent = 0
 list_stack = []
+section_counter = 0  # Counter for top-level sections (## headings)
 
 for line in lines:
     line = line.rstrip()
@@ -134,7 +135,16 @@ for line in lines:
         if list_stack:
             html_lines.extend(["</ul>"] * len(list_stack))
             list_stack.clear()
-        html_lines.append(f"<h2>{md.convert(line[3:])}</h2>")
+        section_counter += 1  # Increment the section counter
+        heading_text = line[3:].strip()  # Remove "## " and any extra whitespace
+        # Strip any existing number (e.g., "1. Engine Bay" -> "Engine Bay")
+        number_match = re.match(r"^\d+\.\s*(.+)", heading_text)
+        if number_match:
+            heading_text = number_match.group(1).strip()
+        # Add the correct section number based on the counter
+        numbered_heading = f"{section_counter}. {heading_text}"
+        # Render the heading directly as an <h2> tag without Markdown conversion
+        html_lines.append(f"<h2>{numbered_heading}</h2>")
     elif line.strip().startswith("- "):
         content = line.strip()[2:]
         number_match = re.match(r"(\d+(?:\.\d+)*)\s+(.+)", content)
@@ -170,15 +180,14 @@ with open("resources.html", "w", encoding="utf-8") as f:
 for dir_name in os.listdir(repo_dir):
     if dir_name.startswith("library_") and os.path.isdir(os.path.join(repo_dir, dir_name)):
         library_dir = os.path.join(repo_dir, dir_name)
-        library_name = dir_name.replace("library_", "").capitalize()  # e.g., "czone" from "library_czone"
-        output_file = f"{dir_name}_contents.html"  # e.g., "library_czone_contents.html"
+        library_name = dir_name.replace("library_", "").capitalize()
+        output_file = f"{dir_name}_contents.html"
         
         library_html = html_header.copy()
         library_html[4] = library_html[4].format(title=f"{library_name} Contents")
         library_html.append(f"<h1>{library_name} Contents</h1>")
         library_html.append("<ul>")
 
-        # Collect all files in the library directory
         for file in os.listdir(library_dir):
             if file.endswith(doc_extensions):
                 rel_path = os.path.relpath(os.path.join(library_dir, file), repo_dir)

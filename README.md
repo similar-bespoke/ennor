@@ -1,5 +1,15 @@
 # Welcome aboard!
 
+## Primary Checks (WOBBLES)
+- Water
+- Oil
+- Batteries
+- Belts
+- Leaks
+- Exhaust
+- Sound
+- (Spares)
+
 ## Technical Resources
 [Library](./resources.html)
 
