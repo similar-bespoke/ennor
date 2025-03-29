@@ -31,7 +31,7 @@
 ## 2. Energy Management
 - 2.1 Mastervolt MV 12/6000
 - 2.2 Generator - Fischer Panda 8000iPMS 6.4kW
-- 2.3 CZone
+- 2.3 CZone - [CZone Doc Sub-library](./czone) - 
 - 2.4 Solar Panels - 2 x Solara S280M43 + 3 x Solara S705M43
 - 2.5 Shore Power system (breakers etc)
 
