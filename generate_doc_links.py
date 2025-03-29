@@ -26,14 +26,14 @@ for root, _, files in os.walk(repo_dir):
 # Initialize Markdown converter for inline text
 md = markdown.Markdown(extensions=['extra'])
 
-# Start building the HTML with styling
-html_lines = [
+# Common HTML header with styling
+html_header = [
     "<!DOCTYPE html>",
     "<html lang='en'>",
     "<head>",
     "<meta charset='UTF-8'>",
     "<meta name='viewport' content='width=device-width, initial-scale=1.0'>",
-    "<title>Ennor Maintenance & Technical Documents Archive</title>",
+    "<title>{title}</title>",
     "<link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400&display=swap' rel='stylesheet'>",
     "<style>",
     "body {",
@@ -101,49 +101,46 @@ html_lines = [
     "<body>",
 ]
 
-# Process the base content
+# Process resources.html
+html_lines = html_header.copy()
+html_lines[4] = html_lines[4].format(title="Ennor Maintenance & Technical Documents Archive")
+
 lines = base_content.splitlines()
 current_indent = 0
-list_stack = []  # Track open <ul> tags
+list_stack = []
 
 for line in lines:
     line = line.rstrip()
     if not line:
         continue
 
-    # Calculate indentation level (2 spaces = 1 level)
     indent = len(line) - len(line.lstrip())
     indent_level = indent // 2
 
-    # Close any excess list levels
     while len(list_stack) > indent_level:
         html_lines.append("</ul>")
         list_stack.pop()
 
-    # Open new list levels if needed
     while len(list_stack) < indent_level:
         html_lines.append("<ul>")
         list_stack.append(True)
 
-    # Process the line content
     if line.startswith("# "):
-        if list_stack:  # Close any open lists before h1
+        if list_stack:
             html_lines.extend(["</ul>"] * len(list_stack))
             list_stack.clear()
         html_lines.append(f"<h1>{md.convert(line[2:])}</h1>")
     elif line.startswith("## "):
-        if list_stack:  # Close any open lists before h2
+        if list_stack:
             html_lines.extend(["</ul>"] * len(list_stack))
             list_stack.clear()
         html_lines.append(f"<h2>{md.convert(line[3:])}</h2>")
     elif line.strip().startswith("- "):
-        content = line.strip()[2:]  # Remove "- "
-        # Extract number (e.g., "1.1", "1.1.1") if present
+        content = line.strip()[2:]
         number_match = re.match(r"(\d+(?:\.\d+)*)\s+(.+)", content)
         if number_match:
             number, description = number_match.groups()
             content_html = md.convert(description).replace('<p>', '').replace('</p>', '')
-            # Check if this is a second-to-top level (e.g., "1.1", not "1" or "1.1.1")
             if number.count('.') == 1 and number in file_map:
                 file_name, rel_path = file_map[number]
                 link_text = f"{number}_doc_link"
@@ -154,19 +151,41 @@ for line in lines:
             content_html = md.convert(content).replace('<p>', '').replace('</p>', '')
             html_lines.append(f"<li>{content_html}</li>")
     else:
-        if list_stack:  # Close lists if transitioning to paragraph
+        if list_stack:
             html_lines.extend(["</ul>"] * len(list_stack))
             list_stack.clear()
         html_lines.append(f"<p>{md.convert(line.strip())}</p>")
 
     md.reset()
 
-# Close any remaining lists
 if list_stack:
     html_lines.extend(["</ul>"] * len(list_stack))
 
 html_lines.extend(["</body>", "</html>"])
 
-# Write to resources.html
 with open("resources.html", "w", encoding="utf-8") as f:
     f.write("\n".join(html_lines) + "\n")
+
+# Process all library_* directories
+for dir_name in os.listdir(repo_dir):
+    if dir_name.startswith("library_") and os.path.isdir(os.path.join(repo_dir, dir_name)):
+        library_dir = os.path.join(repo_dir, dir_name)
+        library_name = dir_name.replace("library_", "").capitalize()  # e.g., "czone" from "library_czone"
+        output_file = f"{dir_name}_contents.html"  # e.g., "library_czone_contents.html"
+        
+        library_html = html_header.copy()
+        library_html[4] = library_html[4].format(title=f"{library_name} Contents")
+        library_html.append(f"<h1>{library_name} Contents</h1>")
+        library_html.append("<ul>")
+
+        # Collect all files in the library directory
+        for file in os.listdir(library_dir):
+            if file.endswith(doc_extensions):
+                rel_path = os.path.relpath(os.path.join(library_dir, file), repo_dir)
+                library_html.append(f"<li><a href='{rel_path}'>{file}</a></li>")
+
+        library_html.append("</ul>")
+        library_html.extend(["</body>", "</html>"])
+
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write("\n".join(library_html) + "\n")
