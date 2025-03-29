@@ -3,8 +3,8 @@ name: Update Resources HTML
 on:
   push:
     branches:
-      - main  # Adjust this to your default branch if different
-  workflow_dispatch:  # Allows manual triggering
+      - main
+  workflow_dispatch:
 
 jobs:
   generate-html:
@@ -16,21 +16,27 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'  # Matches the version in your error log
+          python-version: '3.13'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: List directory contents
+        run: ls -la  # See what’s in the root directory
+
       - name: Run script to update resources
         run: python generate_doc_links.py
+
+      - name: Check generated files
+        run: ls -la *.html  # List all HTML files after running the script
 
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add resources.html
-          git diff --staged --quiet || git commit -m "Update resources.html"
+          git add resources.html *_contents.html  # Add all generated HTML files
+          git diff --staged --quiet || git commit -m "Update resources and library contents HTML files"
           git push
         shell: bash
