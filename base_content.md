@@ -25,7 +25,7 @@
   - 1.1.7 _119798-77350 Belt V-Ribbed_
   - 1.1.8 _119574-18790 Zinc Anti-Corrosive_
 - 1.2 Calorifier -
-- 1.3 Main Water Pump -
+- 1.3 Fuel polishing system - 
 - 1.4 Webasto Heater -
 
 ## 2. Energy Management
@@ -72,7 +72,14 @@
 - 7.4 Torqueedo 1003
 - 7.5 Fenders - Fendertex
   - 7.5.1 _Inflate to 5.1psi_
+  
+## 8. Pumps
+- 8.1 Black water pump - Whale Gulper Toiler Pump  
+- 8.2 Grey water pump - 
+- 8.3 Fresh water pump -
+- 8.4 Automatic Bilge pump - 
+- 8.5 Manual Bilge pump - 
 
-## 8. Sundries
-- 8.1 Pre-delivery inspection checklist
+## 9. Sundries
+- 9.1 Pre-delivery inspection checklist
 
