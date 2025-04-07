@@ -135,15 +135,12 @@ for line in lines:
         if list_stack:
             html_lines.extend(["</ul>"] * len(list_stack))
             list_stack.clear()
-        section_counter += 1  # Increment the section counter
-        heading_text = line[3:].strip()  # Remove "## " and any extra whitespace
-        # Strip any existing number (e.g., "1. Engine Bay" -> "Engine Bay")
+        section_counter += 1
+        heading_text = line[3:].strip()
         number_match = re.match(r"^\d+\.\s*(.+)", heading_text)
         if number_match:
             heading_text = number_match.group(1).strip()
-        # Add the correct section number based on the counter
         numbered_heading = f"{section_counter}. {heading_text}"
-        # Render the heading directly as an <h2> tag without Markdown conversion
         html_lines.append(f"<h2>{numbered_heading}</h2>")
     elif line.strip().startswith("- "):
         content = line.strip()[2:]
@@ -153,8 +150,10 @@ for line in lines:
             content_html = md.convert(description).replace('<p>', '').replace('</p>', '')
             if number.count('.') == 1 and number in file_map:
                 file_name, rel_path = file_map[number]
+                # Prepend ../ to link to root directory
+                link_path = f"../{rel_path}"
                 link_text = f"{number}_doc_link"
-                html_lines.append(f"<li>{number} {content_html} <a href='{rel_path}'>{link_text}</a></li>")
+                html_lines.append(f"<li>{number} {content_html} <a href='{link_path}'>{link_text}</a></li>")
             else:
                 html_lines.append(f"<li>{number} {content_html}</li>")
         else:
@@ -191,7 +190,9 @@ for dir_name in os.listdir(repo_dir):
         for file in os.listdir(library_dir):
             if file.endswith(doc_extensions):
                 rel_path = os.path.relpath(os.path.join(library_dir, file), repo_dir)
-                library_html.append(f"<li><a href='{rel_path}'>{file}</a></li>")
+                # Prepend ../ to link to root directory from encrypted/
+                link_path = f"../{rel_path}"
+                library_html.append(f"<li><a href='{link_path}'>{file}</a></li>")
 
         library_html.append("</ul>")
         library_html.extend(["</body>", "</html>"])
