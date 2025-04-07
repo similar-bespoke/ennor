@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -32,7 +32,20 @@ jobs:
       - name: Check generated files
         run: ls -la *.html  # List all HTML files after running the script
 
-      - name: Commit and push changes
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install StatiCrypt
+        run: npm install -g staticrypt
+
+      - name: Encrypt resources.html
+        run: staticrypt resources.html "${{ secrets.PAGE_PASSWORD }}" -o resources.html
+        env:
+          PAGE_PASSWORD: ${{ secrets.PAGE_PASSWORD }}
+
+      - name: Commit changes
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
@@ -40,3 +53,10 @@ jobs:
           git diff --staged --quiet || git commit -m "Update resources and library contents HTML files"
           git push
         shell: bash
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          keep_files: false  # Ensures clean deployment
