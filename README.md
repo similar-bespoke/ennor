@@ -11,7 +11,7 @@
 - (Spares)
 
 ## Technical Resources
-[Library](./resources.html)
+[Library](./encrypted/resources.html)
 
 ## Navigation Resources
 
