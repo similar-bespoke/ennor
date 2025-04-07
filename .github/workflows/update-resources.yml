@@ -43,8 +43,9 @@ jobs:
       - name: Encrypt resources.html
         run: |
           if [ -f resources.html ]; then
-            staticrypt resources.html "${{ secrets.PAGE_PASSWORD }}" --short -d encrypted
+            staticrypt resources.html -p "${{ secrets.PAGE_PASSWORD }}" --short -d encrypted
             rm resources.html  # Remove unencrypted original
+            ls -la encrypted/  # Confirm output
           else
             echo "Error: resources.html not found"
             exit 1
