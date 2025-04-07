@@ -74,4 +74,4 @@
 - 9.1 Pre-delivery inspection checklist
 - 9.2 Radio Licence Management - [Ofcom](https://ofcom.force.com/LicensingComLicences)
 - 9.3 ePIRB Beacon Registration Management - [MCA](https://register-406-beacons.service.gov.uk/account/your-beacon-registry-account)
-- 9.4 [Almanac](https://drive.google.com/file/d/1-8bCjXA2SSEZGNXCAc-Gb0-MAiEK_Zeh/view?usp=drive_link)
+- 9.4 [Reeds Channel Almanac 2025](https://drive.google.com/file/d/19OfgtpnxY4MY-EOZBJ1LF8i0u4R0n6cR/view?usp=sharing)
