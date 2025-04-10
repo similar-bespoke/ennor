@@ -44,7 +44,7 @@
 - 5.4 Ominsense Ulysses MicroS+ thermal camera -
 - 5.5 Echomax AX Active Radar Reflector -
 - 5.6 Calypso Instruments ULP Wind Sensor -
-- 5.7 Starlink Marine -
+- 5.7 Starlink Marine - Starlink ID 01000000-00000000-00c53ed2, S/N HPUNE60000014468, Kit # KITP00367270
 - 5.8 Iris 735 cameras -
 - 5.9 IP Camera Encoder - Clinton Electronics E04HDA
 
