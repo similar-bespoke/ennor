@@ -26,7 +26,6 @@
 - 1.11 TruDesign Position Monitored Ball Valve
 - 1.12 TidesMarine SureSeal System
 - 1.13 R & D Marine Coupling between engine and stern gear (Part 910-029)
-- 1.14
 
 ## 2. Energy Management
 - 2.1 Mastervolt
@@ -88,7 +87,6 @@
 - 5.15 Hella Marine NAVILED Pro 5 Nautical Mile Masthead Lamp
 - 5.16 Electric Horn (manufacturer unknown)
 
-
 ## 6. Galley
 - 6.1 Oven -
 - 6.2 Hob -
@@ -115,7 +113,6 @@
 - 8.8 Flojet Industrial Pump
 - 8.9 Rule 3-4" Inline Bilge Blower
 - 8.10 Vetus No-Smell Filter NSF16/19/25/38D
-
 
 ## 9. Sundries
 - 9.1 Pre-delivery inspection checklist
