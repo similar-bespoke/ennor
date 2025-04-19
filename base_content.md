@@ -15,34 +15,35 @@
   - 1.1.7 _119798-77350 Belt V-Ribbed_
   - 1.1.8 _119574-18790 Zinc Anti-Corrosive_
 - 1.2 Yanmar Marine Gear KMH Series
-- 1.3 SureCal Calorifier -
-- 1.4 Facet E1F Solid State Fuel Pump - 
+- 1.3 SureCal Calorifier (**which model**) -
+- 1.4 Facet E1F Solid State Fuel Pump (**which model**)- 
 - 1.5 Webasto Heater Air Top Evo 40 -
 - 1.6 Halyard Exhaust System
-- 1.7 CEM Axial VE-VEX Ventilation Fans
-- 1.8 Maestrini Water Strainers
-- 1.9 Parker Racor 500FG Turbine Series Fuel Filter/Water Separator
-- 1.10 Vetus 330 Cooling Water Strainer
-- 1.11 TruDesign Position Monitored Ball Valve
-- 1.12 TidesMarine SureSeal System
-- 1.13 R & D Marine Coupling between engine and stern gear (Part 910-029)
+- 1.7 CEM Axial VE-VEX Ventilation Fans (**which model**)
+- 1.8 Maestrini Water Strainers (**which model**)
+- 1.9 Parker Racor 500FG Turbine Series Fuel Filter/Water Separator (**which model**) 
+- 1.10 Vetus 330 Cooling Water Strainer 
+- 1.11 TruDesign Position Monitored Ball Valve 
+- 1.12 TidesMarine SureSeal Shaftdrive System 
+- 1.13 R & D Marine Coupling between engine and stern gear (Part 910-029) -
 
 ## 2. Energy Management
 - 2.1 Mastervolt
-  - 2.1.1 Mastervolt Mass Combi Pro 12/3000-150 Charger Inverter
+  - 2.1.1 Mastervolt Mass Combi Pro 12/3000-150 Charger Inverter 
   - 2.1.2 Mastervolt Mass Combi Ultra 12/3000-150 Charger Inverter Cluster
   - 2.1.3 Mastervolt Chargemaster 12/25-3
-  - 2.1.4 Mastervolt DC-DC Master Converter
-  - 2.1.5 Mastervolt Mac Plus DC-DC Charger CZone
-  - 2.1.6 Mastervolt Mac Plus x 2 DC-DC for Steering Pump Power
-  - 2.1.7 Mastervolt MLI Ultra Lithium Ion Battery
-  - 2.1.8 Mastervolt Digital AC 1x6A AC Relay
-  - 2.1.9 Mastervolt USB Interface
-  - 2.1.10 Mastervolt Serial Interface
-  - 2.1.11 Mastervolt Multipurpose Contact Output
-  - 2.1.12 Mastervolt Magic DC-DC Converter
+  - 2.1.4 Mastervolt DC-DC Master Converter (**which model**)
+  - 2.1.5 Mastervolt Mac Plus DC-DC Charger CZone (**which model**)
+  - 2.1.6 Mastervolt Mac Plus x 2 DC-DC for Steering Pump Power (**which model**)
+  - 2.1.7 Mastervolt MLI Ultra Lithium Ion Battery (**which model**)
+  - 2.1.8 Mastervolt Digital AC 1x6A AC Relay (**which model**)
+  - 2.1.9 Mastervolt USB Interface - 
+  - 2.1.10 Mastervolt Serial Interface - 
+  - 2.1.11 Mastervolt Multipurpose Contact Output -
+  - 2.1.12 Mastervolt Magic DC-DC Converter 
+  - 2.1.13 Mastervolt [PC Monitoring Software] (https://www.mastervolt.com/downloads/so/)
 - 2.2 Generator - Fischer Panda 8000iPMS 6.4kW
-  - 2.2.1 Fischer Panda iControl3 Panel
+  - 2.2.1 Fischer Panda iControl3 Panel - 
   - 2.2.2 Fischer Panda Inverter PMGi5000 or 8000
   - 2.2.3 Kubota Diesel Engine  
 - 2.3 CZone - [Czone Doc Library](library_czone_contents.html)
@@ -78,7 +79,7 @@
 - 5.6 Calypso Instruments ULP Wind Sensor -
 - 5.7 Starlink Marine - Starlink ID 01000000-00000000-00c53ed2, S/N HPUNE60000014468, Kit # KITP00367270
 - 5.8 Iris 735 cameras -
-- 5.9 IP Camera Encoder - Clinton Electronics E04HDA
+- 5.9 NOT IN USE: IP Camera Encoder - Clinton Electronics E04HDA
 - 5.10 Lewmar V1-6 Windlass
 - 5.11 Roca W38 Wiper Motors
 - 5.12 Makefast Track Panel Sunroof
