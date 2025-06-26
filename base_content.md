@@ -2,7 +2,7 @@
 
 **VESSEL NAME: ENNOR**  
 **CALL SIGN: MRRX5**  
-**MMSI: 232059754**
+**MMSI: 232059754**  
 **Registration Number: SSR301572**
 
 ## 1. Engine Bay
